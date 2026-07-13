@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon --ignore users.json --ignore pedidos.json server.js"
+    "dev": "nodemon --ignore users.json --ignore logs.txt --ignore pedidos.json server.js"
   },
   "keywords": [],
   "author": "",
