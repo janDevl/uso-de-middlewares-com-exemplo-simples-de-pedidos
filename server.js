@@ -105,48 +105,7 @@ app.post('/criarPedido', fiscalDePedido, fiscalDePreco, (req, res) => {
     
 })
 
-app.put('/attPedido/:id', (req, res) => {
-    const pedidoSelecionado = req.params.id
-    const atualizacao = req.body
 
-    if(!atualizacao){
-        return res.status(500).json({
-            err: "erro no recebimendo dos dados"
-        })
-    }
-
-    fs.readFile('pedidos.json', 'utf-8', (err, data) => {
-        if(err){
-            return res.status(500).json({
-                erro: "Erro ao ler o banco de dados"
-            })
-        }
-
-        const pedidos = JSON.parse(data)
-        const pedidoEncontrado = pedidos.findIndex(user => user.id === pedidoSelecionado)
-
-        if(pedidoEncontrado === -1){
-            return res.status(404).json({
-                erro: "Pedido não existente"
-            })
-        }
-        
-        pedidos[pedidoEncontrado].tempo = atualizacao.tempo
-        pedidos[pedidoEncontrado].status = atualizacao.status
-        
-        fs.writeFile('pedidos.json', JSON.stringify(pedidos), err => {
-             if(err){
-                return res.status(500).json({
-                    erro: "Erro ao salvar no banco de dados"
-                })
-            }
-
-            res.status(200).send('Status do pedido atualizado')
-        })
-
-
-    })
-})
 //ainda falta adicionar: DELETE, caso tenha cancelamento
 
 app.listen(3000, () => console.log('rodando..'))
