@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
     
 })
 
-app.get('/pedidos', (req, res) =>{
+app.get('/pedidos?', (req, res) =>{
     const filtros = req.query
     fs.readFile('pedidos.json','utf-8',(err, data) =>{
         
